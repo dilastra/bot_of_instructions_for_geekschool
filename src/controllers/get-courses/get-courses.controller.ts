@@ -3,38 +3,49 @@ import { courses } from "../../constants";
 import { CustomContext } from "../../types";
 
 function getCourses(ctx: CustomContext) {
-  const currentPageCourse = ctx.session.currentPageCourse;
+  if ("text" in ctx.message) {
+    const currentСoursePageNumber = ctx.session.currentСoursePageNumber;
 
-  const trainingsButton = courses.slice(
-    currentPageCourse * 3,
-    currentPageCourse * 3 + 3
-  );
+    const currentСoursePage = courses.slice(
+      currentСoursePageNumber * 3,
+      currentСoursePageNumber * 3 + 3
+    );
 
-  if (trainingsButton.length < 3) {
-    ctx.session.isLastPage = true;
-  } else {
-    ctx.session.isLastPage = false;
+    const nextStartСoursePageNumber = currentСoursePageNumber * 3 + 3;
+    const nextEndСoursePageNumber = currentСoursePageNumber * 3 + 6;
+
+    ctx.session.isLastPage =
+      courses.slice(nextStartСoursePageNumber, nextEndСoursePageNumber)
+        .length === 0;
+
+    const bottomButtons = [];
+    if (courses.length > 3) {
+      if (ctx.session.isLastPage) {
+        bottomButtons.push("⏪ Назад");
+      } else if (currentСoursePageNumber > 0) {
+        bottomButtons.push("⏪ Назад", "Вперёд ⏩");
+      } else {
+        bottomButtons.push("Вперёд ⏩");
+      }
+    }
+
+    const message =
+      ctx.message.text !== "Вперёд ⏩" && ctx.message.text !== "⏪ Назад"
+        ? "Выбери курс, для которого тебе необходима инструкция"
+        : `Страница ${currentСoursePageNumber + 1} из ${Math.ceil(
+            courses.length / 3
+          )}`;
+
+    return ctx.reply(
+      message,
+      Markup.keyboard([
+        ...currentСoursePage.map((course) => {
+          return [course.name];
+        }),
+        bottomButtons,
+      ]).resize()
+    );
   }
-
-  const bottomButtons = [];
-
-  if (ctx.session.isLastPage) {
-    bottomButtons.push("Назад");
-  } else if (currentPageCourse > 0) {
-    bottomButtons.push("Назад", "Вперёд");
-  } else {
-    bottomButtons.push("Вперёд");
-  }
-
-  return ctx.reply(
-    "Привет",
-    Markup.keyboard([
-      ...trainingsButton.map((trainingButton) => {
-        return [trainingButton];
-      }),
-      bottomButtons,
-    ]).resize()
-  );
 }
 
 export default getCourses;

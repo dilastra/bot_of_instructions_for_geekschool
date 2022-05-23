@@ -2,8 +2,9 @@ import { Context } from "telegraf";
 
 interface CustomContext extends Context {
   session: {
-    currentPageCourse: number;
+    currentСoursePageNumber: number;
     isLastPage: boolean;
+    idSelectedCourse: number;
   };
 }
 

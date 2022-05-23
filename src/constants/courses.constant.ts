@@ -1,12 +1,14 @@
 const courses = [
-  "Дизайн и программирование в Roblox Studio0",
-  "Основы компьютерной анимации1",
-  "Мобильные приложения на Java2",
-  "Дизайн и программирование в Roblox Studio3",
-  "Основы компьютерной анимации4",
-  "Мобильные приложения на Java5",
-  "Дизайн и программирование в Roblox Studio6",
-  "Основы компьютерной анимации7",
+  {
+    id: 1,
+    name: "Разработка игр на Unity",
+    instructions: [
+      {
+        platform: "Windows",
+        link: "https://telegra.ph/Razrabotka-igr-na-Unity-for-Windows-05-20",
+      },
+    ],
+  },
 ];
 
 export default courses;

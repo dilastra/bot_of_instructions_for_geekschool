@@ -13,15 +13,19 @@ bot.use(localSession.middleware());
 bot.start((ctx) =>
   ctx.reply(
     "Какой-то приветственный текст",
-    Markup.keyboard(["Инструкции"]).resize()
+    Markup.keyboard(["Инструкции 📃"]).resize()
   )
 );
 
 bot.on("text", (ctx: CustomContext, next) => {
-  if (!ctx.session?.currentPageCourse) {
+  if (
+    ctx.session?.currentСoursePageNumber === null ||
+    ctx.session?.currentСoursePageNumber === undefined
+  ) {
     ctx.session = {
-      currentPageCourse: 0,
+      currentСoursePageNumber: null,
       isLastPage: false,
+      idSelectedCourse: null,
     };
   }
   return next();

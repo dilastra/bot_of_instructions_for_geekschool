@@ -3,8 +3,9 @@
     {
       "id": "1011333059:1011333059",
       "data": {
-        "currentPageCourse": 1,
-        "isLastPage": false
+        "currentСoursePageNumber": 0,
+        "isLastPage": true,
+        "idSelectedCourse": 1
       }
     }
   ]
