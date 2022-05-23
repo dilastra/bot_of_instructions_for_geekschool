@@ -17,10 +17,7 @@ bot.start((ctx) =>
   )
 );
 
-bot.hears(courses, (ctx) => {});
-
 bot.on("text", (ctx: CustomContext, next) => {
-  console.log(ctx);
   if (!ctx.session?.currentPageCourse) {
     ctx.session = {
       currentPageCourse: 0,
