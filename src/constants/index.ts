@@ -1,3 +1,3 @@
-import courses from "./courses.constant";
+import instructions from "./instructions.constant";
 
-export { courses };
+export { instructions };

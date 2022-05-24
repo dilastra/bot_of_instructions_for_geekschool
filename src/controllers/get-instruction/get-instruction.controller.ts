@@ -1,32 +1,47 @@
 import { Markup } from "telegraf";
-import { courses } from "../../constants";
+import { instructions } from "../../constants";
 import { CustomContext } from "../../types";
 
-function getInstruction(ctx: CustomContext) {
+async function getInstruction(ctx: CustomContext) {
   if ("text" in ctx.message) {
-    const selectedCourse = courses.find(
-      (course) => course.id === ctx.session.idSelectedCourse
+    const selectedInstruction = instructions.find(
+      (instruction) => instruction.id === ctx.session.idSelectedCourse
     );
 
-    console.log(selectedCourse);
+    const selectedPlatformName = ctx.message.text;
 
-    const platform = ctx.message.text;
+    if (!selectedInstruction?.platforms) {
+      const message = `Выбранная инструкция: <b>${selectedInstruction.name}</b>\n`;
+      await ctx.replyWithHTML(message, {
+        ...Markup.inlineKeyboard([
+          Markup.button.url(
+            "Инструкция",
+            selectedInstruction.linkOnInstructions
+          ),
+        ]),
+      });
 
-    const instruction = selectedCourse.instructions.find(
-      (instruction) => instruction.platform === platform
+      return await ctx.reply(
+        "Чтобы выбрать другую инструкцию, нажми 'Выбрать другую инструкцию'",
+        Markup.keyboard(["Выбрать другую инструкцию"]).resize()
+      );
+    }
+
+    const selectedPlatform = selectedInstruction?.platforms.find(
+      (platform) => platform.name === selectedPlatformName
     );
 
     const message =
-      `Выбранный курс: <b>${selectedCourse.name}</b>\n` +
-      `Выбранная платформа: <b>${platform}</b>`;
+      `Выбранный курс: <b>${selectedInstruction.name}</b>\n` +
+      `Выбранная платформа: <b>${selectedPlatformName}</b>`;
 
-    ctx.replyWithHTML(message, {
+    await ctx.replyWithHTML(message, {
       ...Markup.inlineKeyboard([
-        Markup.button.url("Инструкция", instruction.link),
+        Markup.button.url("Инструкция", selectedPlatform.linkOnInstruction),
       ]),
     });
 
-    ctx.reply(
+    return await ctx.reply(
       "Чтобы выбрать другую инструкцию, нажми 'Выбрать другую инструкцию'",
       Markup.keyboard(["Выбрать другую инструкцию"]).resize()
     );

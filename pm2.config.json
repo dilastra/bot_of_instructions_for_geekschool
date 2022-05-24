@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "name": "geekschool_instruction_bot",
+      "script": "main.bundle.js",
+      "env": {
+        "ACCESS_TOKEN_BOT": ""
+      }
+    }
+  ]
+}

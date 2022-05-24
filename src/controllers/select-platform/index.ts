@@ -1,12 +1,11 @@
 import { Composer } from "telegraf";
-import { courses } from "../../constants";
+import { instructions } from "../../constants";
 import { CustomContext } from "../../types";
 import selectPlatform from "./select-platform.controller";
 
 const selectPlatformComposer = new Composer<CustomContext>();
-
 selectPlatformComposer.hears(
-  courses.map((course) => course.name),
+  instructions.map((instruction) => instruction.name),
   selectPlatform
 );
 

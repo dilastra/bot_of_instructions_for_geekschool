@@ -1,11 +1,12 @@
 import { Markup } from "telegraf";
-import { courses } from "../../constants";
+import { instructions } from "../../constants";
 import { CustomContext } from "../../types";
+import getInstruction from "../get-instruction/get-instruction.controller";
 
-function selectPlatform(ctx: CustomContext) {
-  const findedCourse = courses.find((course) => {
+async function selectPlatform(ctx: CustomContext) {
+  const findedInstruction = instructions.find((instruction) => {
     if ("text" in ctx.message) {
-      return course.name === ctx.message.text;
+      return instruction.name === ctx.message.text;
     }
 
     return false;
@@ -13,15 +14,17 @@ function selectPlatform(ctx: CustomContext) {
 
   ctx.session = {
     ...ctx.session,
-    idSelectedCourse: findedCourse.id,
+    idSelectedCourse: findedInstruction.id,
   };
 
-  console.log(ctx.session);
+  if (!findedInstruction?.platforms) {
+    return await getInstruction(ctx);
+  }
 
-  return ctx.reply(
+  return await ctx.reply(
     "Выберите платформу",
     Markup.keyboard(
-      findedCourse.instructions.map((instruction) => instruction.platform)
+      findedInstruction.platforms.map((instruction) => instruction.name)
     ).resize()
   );
 }

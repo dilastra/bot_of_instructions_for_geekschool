@@ -2,7 +2,7 @@ import { Markup } from "telegraf";
 import { instructions } from "../../constants";
 import { CustomContext } from "../../types";
 
-function getCourses(ctx: CustomContext) {
+function getInstructions(ctx: CustomContext) {
   if ("text" in ctx.message) {
     const currentСoursePageNumber = ctx.session.currentСoursePageNumber;
 
@@ -51,4 +51,4 @@ function getCourses(ctx: CustomContext) {
   }
 }
 
-export default getCourses;
+export default getInstructions;
