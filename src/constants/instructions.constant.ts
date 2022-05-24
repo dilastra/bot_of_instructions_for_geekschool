@@ -1,6 +1,11 @@
 const instructions = [
   {
     id: 1,
+    name: "Инструкция Zoom",
+    linkOnInstructions: "https://telegra.ph/Instrukciya-Zoom-05-23",
+  },
+  {
+    id: 2,
     name: "Разработка игр на Unity",
     platforms: [
       {
@@ -14,11 +19,6 @@ const instructions = [
           "https://telegra.ph/Razrabotka-igr-na-Unity-for-MacOS-05-20",
       },
     ],
-  },
-  {
-    id: 2,
-    name: "Инструкция Zoom",
-    linkOnInstructions: "https://telegra.ph/Instrukciya-Zoom-05-23",
   },
 ];
 

@@ -1,12 +1,11 @@
 import { Composer } from "telegraf";
 import { CustomContext } from "../../types";
-import getInstructions from "./get-courses.controller";
-import getCoursess from "./get-courses.controller";
+import getInstructions from "./get-instructions.controller";
 
 const getInstructionsComposer = new Composer<CustomContext>();
 
 getInstructionsComposer.hears(
-  ["Инструкции 📃", "Выбрать другую инструкцию"],
+  ["Инструкции 📃", "Выбрать другую инструкцию 📃"],
   getInstructions
 );
 

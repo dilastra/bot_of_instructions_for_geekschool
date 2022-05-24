@@ -5,7 +5,7 @@
       "data": {
         "currentСoursePageNumber": 0,
         "isLastPage": true,
-        "idSelectedCourse": 1
+        "idSelectedCourse": null
       }
     }
   ]

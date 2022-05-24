@@ -23,9 +23,10 @@ async function selectPlatform(ctx: CustomContext) {
 
   return await ctx.reply(
     "Выберите платформу",
-    Markup.keyboard(
-      findedInstruction.platforms.map((instruction) => instruction.name)
-    ).resize()
+    Markup.keyboard([
+      findedInstruction.platforms.map((instruction) => instruction.name),
+      ["Вернуться в главное меню ↩️"],
+    ]).resize()
   );
 }
 
