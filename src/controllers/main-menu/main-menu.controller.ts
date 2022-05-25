@@ -3,7 +3,7 @@ import { CustomContext } from "../../types";
 
 function mainMenu(ctx: CustomContext) {
   return ctx.reply(
-    "Ты вернулся в главное меню",
+    "Ты в главное меню",
     Markup.keyboard([["Контакты 📒", "Инструкции 📃"]]).resize()
   );
 }
