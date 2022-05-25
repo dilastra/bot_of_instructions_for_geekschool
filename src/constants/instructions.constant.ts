@@ -20,6 +20,22 @@ const instructions = [
       },
     ],
   },
+  {
+    id: 3,
+    name: "Minecraft: программирование на Python",
+    platforms: [
+      {
+        name: "Windows",
+        linkOnInstruction:
+          "https://telegra.ph/Minecraft-programmirovanie-na-Python-for-Windows-05-25",
+      },
+      {
+        name: "MacOS",
+        linkOnInstruction:
+          "https://telegra.ph/Minecraft-programmirovanie-na-Python-for-MacOS-05-25",
+      },
+    ],
+  },
 ];
 
 export default instructions;
