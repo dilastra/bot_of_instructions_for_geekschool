@@ -36,6 +36,20 @@ const instructions = [
       },
     ],
   },
+  {
+    id: 3,
+    name: "Дизайн и программирование игр в Roblox Studio",
+    platforms: [
+      {
+        name: "Windows",
+        linkOnInstruction: "https://telegra.ph/Roblox-for-Windows-05-26",
+      },
+      {
+        name: "MacOS",
+        linkOnInstruction: "https://telegra.ph/Roblox-for-MacOS-05-26",
+      },
+    ],
+  },
 ];
 
 export default instructions;

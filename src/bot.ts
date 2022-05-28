@@ -6,7 +6,7 @@ import { CustomContext } from "./types";
 
 const bot = new Telegraf<CustomContext>(process.env.ACCESS_TOKEN_BOT);
 
-const localSession = new LocalSession({ database: "example_db.json" });
+const localSession = new LocalSession({ database: "sessions_db.json" });
 
 bot.use(localSession.middleware());
 
